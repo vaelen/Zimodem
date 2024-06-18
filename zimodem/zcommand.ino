@@ -77,7 +77,7 @@ static bool validateHostInfo(uint8_t *vbuf)
   if(!fail)
   {
     for(int i=colonDex+1;i<cmd.length();i++)
-      if(strchr("0123456789",cmd[i])<0)
+      if(strchr("0123456789",cmd[i]) == NULL)
         fail=true;
   }
   return !fail;
@@ -1637,12 +1637,12 @@ ZResult ZCommand::doWiFiCommand(int vval, uint8_t *vbuf, int vlen, bool isNumber
     IPAddress *ip[4];
     for(int i=0;i<4;i++)
       ip[i]=null;
-    if(x > 0)
+    if(x != NULL)
     {
       *x=0;
       pw=x+1;
       x=strstr(pw,",");
-      if(x > 0)
+      if(x != NULL)
       {
         int numCommasFound=0;
         int numDotsFound=0;
